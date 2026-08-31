@@ -1,0 +1,4 @@
+﻿sentiment_label,review_count,average_score,review_share
+Negative,94,0.160371796207155,0.188
+Neutral / Mixed,42,0.5147156139822633,0.084
+Positive,364,0.9223774545262831,0.728

@@ -1,0 +1,5 @@
+﻿method,sample_size,rule,observed,passed,decision
+Exploratory HC3 OLS,150,>=10 observations per estimated parameter,26.0,True,Retained as associational sensitivity analysis
+K-Means segmentation,150,>=5 products in every selected cluster,18.0,True,Retained as exploratory segmentation
+LDA topic model,500,>=20 reviews assigned to every dominant topic,214.0,True,Retained as exploratory topic model
+SnowNLP sentiment classification,500,Human-labeled validation set required for accuracy claims,180.0,True,Human-reviewed evaluation completed; Neutral and Mixed pooled for three-class scoring

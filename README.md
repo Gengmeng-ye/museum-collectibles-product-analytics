@@ -72,6 +72,11 @@ with separate Product Landscape and Customer Voice Lab pages.
 | Aspect evaluation | 180 | Majority vote of three published human coders, mapped to this project taxonomy |
 | Sentiment evaluation | 180 | User-reviewed Positive/Neutral/Negative/Mixed labels; local/private audit file |
 
+Recruiter-reviewable, privacy-conscious tables are available in [`data/public/`](data/public/):
+150 anonymized product records, 500 review-model outputs without review text, 180 evaluation labels
+without review text, and the aggregate tables behind the dashboard. See
+[`data/README.md`](data/README.md) for field exclusions and rebuild instructions.
+
 The review source is the CC BY 4.0 Figshare dataset accompanying Huang (2026), *“Opening the Box
 to Explore the Contents”*. The published review workbook does not retain product IDs or review
 dates, so product-review joins are not fabricated. Only 78/150 product listings display sales;
@@ -128,7 +133,8 @@ The annotation command refuses to overwrite an existing worksheet.
 
 ```text
 config/                 Versioned analysis settings and Chinese stopwords
-data/raw/               Immutable legacy and external-source snapshots
+data/raw/               Local immutable legacy and external-source snapshots
+data/public/            GitHub-safe anonymized rows and aggregate outputs
 data/processed/         Generated analysis-ready tables
 data/annotations/       Human-review worksheet (never overwritten)
 docs/                   Methodology, limitations, dictionary, and audit trail

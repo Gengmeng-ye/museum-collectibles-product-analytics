@@ -1,4 +1,4 @@
-.PHONY: setup pipeline annotate figures test lint clean
+.PHONY: setup pipeline annotate public-data figures test lint clean
 
 setup:
 	UV_CACHE_DIR=.uv-cache uv sync --dev
@@ -8,6 +8,9 @@ pipeline:
 
 annotate:
 	UV_CACHE_DIR=.uv-cache uv run python -m src.prepare_annotations
+
+public-data:
+	UV_CACHE_DIR=.uv-cache uv run python -m src.export_public_data
 
 figures:
 	XDG_CACHE_HOME=.cache MPLCONFIGDIR=.mpl-cache UV_CACHE_DIR=.uv-cache uv run python -m src.visualization

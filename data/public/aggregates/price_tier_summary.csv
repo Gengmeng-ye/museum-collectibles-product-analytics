@@ -1,0 +1,5 @@
+﻿price_tier,product_count,displayed_sales_lower_bound,claimed_official_share,product_share
+Budget (<=50 CNY),64,1152.0,0.546875,0.4266666666666667
+High-end (>200 CNY),8,106.0,0.875,0.05333333333333334
+Mass Market (51-100 CNY),73,1322.0,0.9315068493150684,0.4866666666666667
+Premium (101-200 CNY),5,13.0,1.0,0.03333333333333333
