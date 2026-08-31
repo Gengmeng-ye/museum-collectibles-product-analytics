@@ -1,0 +1,15 @@
+random_seed: 42
+price_tiers:
+  budget_max: 50
+  mass_market_max: 100
+  premium_max: 200
+sentiment_thresholds:
+  negative_max: 0.4
+  positive_min: 0.6
+cluster_candidates: [2, 3, 4, 5, 6]
+lda_topic_candidates: [2, 3, 4, 5, 6]
+lda_test_fraction: 0.2
+min_topic_word_document_frequency: 2
+max_topic_word_document_fraction: 0.85
+bootstrap_iterations: 100
+
