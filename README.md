@@ -32,6 +32,10 @@ source does not include a usable product ID, so the reviews cannot be matched to
 Anonymized analysis tables are available in [`data/`](data/). Sources, fields, and licensing notes
 are explained in [`DATA.md`](DATA.md).
 
+The files published on GitHub are reduced, anonymized analysis tables rather than the complete
+raw datasets. Full review text, seller details, source snapshots, and private annotation notes are
+not published. The original source files are required to rebuild the full pipeline from scratch.
+
 ## What the project does
 
 The product section covers price tiers, product formats, displayed-sales coverage, and exploratory
