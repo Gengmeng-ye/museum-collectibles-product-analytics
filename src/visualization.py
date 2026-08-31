@@ -10,7 +10,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 from src.paths import OUTPUT_DIR, ROOT
 
-FIGURE_DIR = ROOT / "reports" / "figures"
+FIGURE_DIR = ROOT / "figures"
 COLORS = ["#F28A73", "#FFC847", "#4EB6D8", "#F7A8B8", "#8F88D8", "#7ECFC6"]
 
 

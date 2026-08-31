@@ -8,9 +8,8 @@ from pathlib import Path
 
 from src.paths import ROOT
 
-
-PUBLIC_DIR = ROOT / "data" / "public"
-AGGREGATE_DIR = PUBLIC_DIR / "aggregates"
+PUBLIC_DIR = ROOT / "data"
+AGGREGATE_DIR = PUBLIC_DIR / "summaries"
 
 PRODUCT_FIELDS = [
     "product_id",
@@ -91,7 +90,7 @@ def write_subset(path: Path, rows: list[dict[str, str]], fields: list[str]) -> N
 
 def export_products() -> None:
     rows = read_csv(ROOT / "data" / "processed" / "products_segmented.csv")
-    write_subset(PUBLIC_DIR / "products_anonymized.csv", rows, PRODUCT_FIELDS)
+    write_subset(PUBLIC_DIR / "products.csv", rows, PRODUCT_FIELDS)
 
 
 def export_reviews() -> None:
@@ -101,7 +100,7 @@ def export_reviews() -> None:
         for row in read_csv(ROOT / "data" / "processed" / "review_topic_assignments.csv")
     }
     rows = [{**row, **topics[row["review_id"]]} for row in scored]
-    write_subset(PUBLIC_DIR / "review_model_outputs_anonymized.csv", rows, REVIEW_FIELDS)
+    write_subset(PUBLIC_DIR / "reviews.csv", rows, REVIEW_FIELDS)
 
 
 def export_evaluation() -> None:
@@ -111,7 +110,7 @@ def export_evaluation() -> None:
         for row in read_csv(ROOT / "data" / "processed" / "reviews_scored.csv")
     }
     rows = [{**row, **scored[row["review_id"]]} for row in evaluation]
-    write_subset(PUBLIC_DIR / "sentiment_evaluation_anonymized.csv", rows, EVALUATION_FIELDS)
+    write_subset(PUBLIC_DIR / "sentiment_evaluation.csv", rows, EVALUATION_FIELDS)
 
 
 def export_aggregates() -> None:

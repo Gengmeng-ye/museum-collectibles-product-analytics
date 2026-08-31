@@ -29,7 +29,7 @@ import {
   YAxis,
 } from 'recharts';
 
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/chart';
 
 type View = 'Product Landscape' | 'Customer Voice Lab';
 

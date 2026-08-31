@@ -15,15 +15,9 @@ data/processed/*
 data/analytics.duckdb
 outputs/*
 data/annotations/*.csv
-!data/public/
-!data/public/**
-!data/interim/.gitkeep
-!data/processed/.gitkeep
-!outputs/.gitkeep
 
-# Local-only source snapshots; keep provenance documents public
+# Local-only source snapshots
 data/raw/legacy/*
-!data/raw/legacy/SHA256SUMS
 data/raw/external/figshare_30671120/*.xlsx
 data/raw/external/figshare_30671120/*.py
 data/raw/external/hooos_museum_blind_box/*.html

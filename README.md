@@ -29,8 +29,8 @@ saved pages of the public Hooos Taobao/Tmall index. It is not an extension of th
 The 500 reviews are a fixed sample from 8,107 Chinese review texts published on Figshare. That
 source does not include a usable product ID, so the reviews cannot be matched to the 150 listings.
 
-Anonymized analysis tables are available in [`data/public/`](data/public/). Source details and
-licensing notes are in [`THIRD_PARTY_DATA.md`](THIRD_PARTY_DATA.md).
+Anonymized analysis tables are available in [`data/`](data/). Sources, fields, and licensing notes
+are explained in [`DATA.md`](DATA.md).
 
 ## What the project does
 
@@ -47,7 +47,7 @@ A few findings:
 - SnowNLP predicts 72.8% of the review sample as positive. On the manually reviewed set, accuracy
   is 0.739 and Macro F1 is 0.459, so that percentage should not be treated as customer satisfaction.
 
-The full discussion is in [`reports/analysis_report.md`](reports/analysis_report.md).
+The full discussion is in [`RESULTS.md`](RESULTS.md).
 
 ## Dashboard
 
@@ -58,24 +58,22 @@ The dashboard presents the work in two parts:
 
 Dashboard files and local setup instructions are in [`dashboard/`](dashboard/README.md).
 
-![Product segment profiles](reports/figures/04-segment-profile-heatmap.png)
+![Product segment profiles](figures/04-segment-profile-heatmap.png)
 
-![Sentiment diagnostics](reports/figures/06-sentiment-diagnostics.png)
+![Sentiment diagnostics](figures/06-sentiment-diagnostics.png)
 
 ## Repository guide
 
 ```text
-config/          Analysis settings and Chinese stopwords
-data/public/     Anonymized data that can be viewed on GitHub
-docs/            Data definitions, methods, limitations, and old-project notes
-reports/         Written findings and generated charts
-sql/             DuckDB queries
-src/             Python data processing and analysis code
-tests/           Data and reproducibility checks
 dashboard/       Interactive dashboard
+data/            Public data and summary tables
+figures/         Generated charts
+src/             Python, SQL, settings, and stopwords
+tests/           Data and reproducibility checks
 ```
 
-See [`docs/README.md`](docs/README.md) for a guide to the documentation.
+The remaining explanations are kept in three files: [`DATA.md`](DATA.md),
+[`METHODS.md`](METHODS.md), and [`RESULTS.md`](RESULTS.md).
 
 ## Run locally
 
@@ -89,8 +87,8 @@ make figures
 make test
 ```
 
-The complete pipeline requires the source snapshots described under `data/raw/external/`. These
-files are not included in the repository because of source and privacy restrictions.
+The complete pipeline requires local source snapshots that are not included in the repository
+because of source and privacy restrictions.
 
 ## Limits
 

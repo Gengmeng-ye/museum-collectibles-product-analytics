@@ -15,7 +15,7 @@ def test_expected_pipeline_outputs_exist() -> None:
 
 
 def test_report_figures_exist_and_are_nonempty() -> None:
-    figure_dir = ROOT / "reports" / "figures"
+    figure_dir = ROOT / "figures"
     figures = sorted(figure_dir.glob("*.png"))
     assert len(figures) == 7
     assert all(path.stat().st_size > 20_000 for path in figures)

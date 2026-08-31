@@ -1,9 +1,8 @@
 import csv
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC = ROOT / "data" / "public"
+PUBLIC = ROOT / "data"
 
 
 def read_rows(filename: str) -> list[dict[str, str]]:
@@ -12,9 +11,9 @@ def read_rows(filename: str) -> list[dict[str, str]]:
 
 
 def test_public_export_row_counts() -> None:
-    assert len(read_rows("products_anonymized.csv")) == 150
-    assert len(read_rows("review_model_outputs_anonymized.csv")) == 500
-    assert len(read_rows("sentiment_evaluation_anonymized.csv")) == 180
+    assert len(read_rows("products.csv")) == 150
+    assert len(read_rows("reviews.csv")) == 500
+    assert len(read_rows("sentiment_evaluation.csv")) == 180
 
 
 def test_public_export_excludes_sensitive_columns() -> None:
@@ -27,9 +26,9 @@ def test_public_export_excludes_sensitive_columns() -> None:
         "review_notes",
     }
     for filename in (
-        "products_anonymized.csv",
-        "review_model_outputs_anonymized.csv",
-        "sentiment_evaluation_anonymized.csv",
+        "products.csv",
+        "reviews.csv",
+        "sentiment_evaluation.csv",
     ):
         rows = read_rows(filename)
         assert rows
