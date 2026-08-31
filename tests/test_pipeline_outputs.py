@@ -14,7 +14,7 @@ def test_expected_pipeline_outputs_exist() -> None:
     assert all(path.exists() for path in expected)
 
 
-def test_recruiter_figures_exist_and_are_nonempty() -> None:
+def test_report_figures_exist_and_are_nonempty() -> None:
     figure_dir = ROOT / "reports" / "figures"
     figures = sorted(figure_dir.glob("*.png"))
     assert len(figures) == 7

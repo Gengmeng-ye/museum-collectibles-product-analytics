@@ -7,7 +7,7 @@
 - Reviews: a fixed, length-stratified sample of 500 unique Chinese reviews drawn from 8,107
   unique texts in the CC BY 4.0 Figshare dataset `10.6084/m9.figshare.30671120.v1`.
 - Evaluation: 180 sampled reviews. Aspect labels are majority votes from three published human
-  coders, mapped to the portfolio taxonomy. Sentiment labels were independently reviewed by the
+  coders, mapped to the project taxonomy. Sentiment labels were independently reviewed by the
   project owner; the former silver labels remain available only for audit comparison.
 
 The pipeline uses only saved snapshots and is reproducible without live scraping.
@@ -34,5 +34,5 @@ The pipeline uses only saved snapshots and is reproducible without live scraping
   included in segmentation.
 - Product prices are displayed listing prices and may reflect promotions or starting SKUs.
 - The public review workbook omits product IDs and dates. No product-review join is fabricated.
-- Masked usernames are not included in processed portfolio tables.
+- Masked usernames are not included in processed public tables.
 - Clusters describe product patterns; they do not identify authentic or counterfeit products.

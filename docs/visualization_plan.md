@@ -16,7 +16,7 @@ LDA selection, sentiment diagnostics, and aspect-model evaluation.
 
 ## Optional future dashboard
 
-A dashboard is not required for the portfolio release. If added later, it should use the generated
+A dashboard is optional. If added later, it should use the generated
 CSV outputs and expose only useful filters: product category, product format, museum/IP, segment,
 and review aspect. It must display the 78/150 sales-coverage warning and keep silver sentiment
 labels visually distinct from human-coded aspects.

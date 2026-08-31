@@ -1,113 +1,103 @@
-# Museum Collectibles: Product Analytics & Chinese NLP
+# Museum Collectibles Market and Review Analysis
 
-An undergraduate web-scraping study rebuilt as a reproducible product analytics portfolio project.
-The project combines a market map of museum collectibles with an independent audit of Chinese
-review-analysis methods. It keeps the useful technical ideas from the original work, corrects the
-parts that could not be verified, and translates the results into decisions a product team could
-understand and test.
+This project revisits an undergraduate study of museum-themed blind boxes sold on Taobao. The
+original work used product listings and Chinese reviews to study price, product types, review
+topics, and sentiment. Only part of the original data and analysis files were retained, so the old
+results could not all be reproduced directly.
 
-> **Portfolio positioning:** Product Analytics + applied Data Science, with a lightweight
-> Python/SQL/DuckDB data pipeline. Models use original Chinese text; documentation and
-> recruiter-facing outputs are in English.
+The current version keeps the original files as an archive and rebuilds the analysis with new,
+documented data sources and a reproducible Python and SQL workflow.
 
-## Project background
+## Background
 
-The original undergraduate project examined museum-themed blind boxes sold on Taobao. Product
-information and customer reviews were collected through web scraping and then analyzed with
-Excel/SPSS-style outputs, K-Means clustering, LDA topic modeling, and SnowNLP sentiment scores.
-That work established the core question—how cultural products are positioned and discussed—but
-the retained files were incomplete: only 47 product records and 100 reviews remained, while the
-report referred to 50 products and 120 reviews. Some results existed only as screenshots or copied
-outputs, and several interpretations could not be reproduced from the surviving data.
+The undergraduate project collected Taobao data with a crawler. The retained files contain 47
+product rows and 100 reviews, although the written report refers to 50 products and 120 reviews.
+Some code was embedded in Word documents, and some results were available only as screenshots or
+software output.
 
-This repository treats that mismatch as a data-audit problem rather than hiding it. The original
-materials are preserved unchanged, and the analysis is rebuilt around two clearly separated
-datasets:
+The current 150-product dataset is not the original dataset with extra rows added. It was collected
+separately on 2026-08-29 from five saved pages of the public Hooos Taobao/Tmall listing index. The
+old Taobao crawler was not rerun because it depended on a session cookie and was not suitable for a
+reproducible public workflow.
 
-1. **Product Landscape:** 150 public Taobao/Tmall listing snapshots are used to describe price
-   structure, product formats, official-store signals, and exploratory product positioning.
-2. **Customer Voice Lab:** a fixed sample of 500 Chinese reviews, drawn from 8,107 unique published
-   review texts, is used to test topic, aspect, and sentiment methods. A 180-review human audit set
-   evaluates SnowNLP instead of treating its output as ground truth.
+The review analysis also uses a separate source: 500 reviews sampled from 8,107 unique Chinese
+review texts in a CC BY 4.0 Figshare dataset. The published review file does not contain a usable
+product identifier, so these reviews are not joined to the 150 product listings.
 
-The two datasets do not contain a defensible product-level key, so they are not joined. Together
-they answer two complementary questions: **what the market offers**, and **what automated review
-analysis can reliably tell a product team**.
+## Data used
 
-## Business questions
+| Dataset | Rows | Role in the project | Source |
+|---|---:|---|---|
+| Retained undergraduate products | 47 | Audit of the earlier analysis | Original local workbook |
+| Retained undergraduate reviews | 100 | Audit of the earlier text analysis | Original local workbook |
+| Current product listings | 150 | Price, format, store signal, and product-group analysis | Hooos public Taobao/Tmall index pages 1–5 |
+| Current review sample | 500 | Topic, aspect, and sentiment analysis | Fixed sample from 8,107 Figshare reviews |
+| Human sentiment evaluation set | 180 | Evaluation of SnowNLP predictions | Manually reviewed subset |
 
-- How is the public museum-collectibles assortment structured by price, format, and store type?
-- Which patterns form useful exploratory product groups?
-- What do Chinese reviews discuss, and how reliably can automated methods identify those signals?
-- Which findings can support a product decision, and which remain outside the available evidence?
+The three anonymized tables used to inspect the current analysis are in [`data/public/`](data/public/).
+Full raw snapshots, review text, seller names, listing links, and annotation notes remain local.
+See [`data/README.md`](data/README.md) for details.
 
-## Key findings
+## Analysis
 
-- **137 of 150 indexed products are priced at or below CNY 100.** The median displayed price is
-  CNY 59, suggesting a mass-market/gifting assortment rather than a premium-only market.
-- **K=5 is the strongest exploratory segmentation solution** across silhouette and bootstrap
-  stability. Segments distinguish museum excavation kits, broad collectible assortments, budget
-  marketplace kits, premium museum figurines, and listings with stronger sales visibility.
-- **Two broad LDA topics are more defensible than the legacy six-topic claim.** Increasing the
-  topic count sharply worsens held-out perplexity and reduces topic diversity.
-- **SnowNLP is not a reliable satisfaction metric here.** It predicts 72.8% of reviews as
-  positive, but achieves 0.739 accuracy and only 0.459 Macro F1 against 180 user-reviewed labels.
-  Positive performance is much stronger than performance on minority classes.
-- **Aspect rules are uneven.** Packaging and Logistics align well with published human coding;
-  Blind-box Outcome and Price & Value require stronger language coverage.
+The product analysis covers:
+
+- price tiers and product formats;
+- availability of displayed sales figures;
+- exploratory K-Means grouping, comparing K=2 through K=6;
+- cluster stability and minimum group size;
+- non-parametric tests and an exploratory robust regression.
+
+The review analysis covers:
+
+- Chinese tokenization and LDA topic modeling;
+- held-out comparison of different topic counts;
+- SnowNLP sentiment scoring;
+- comparison with 180 manually reviewed sentiment labels;
+- rule-based aspect extraction and error analysis.
+
+## Main results
+
+- 137 of the 150 current listings are priced at CNY 100 or below. The median displayed price is
+  CNY 59.
+- Sales figures are visible for 78 listings. Missing sales values are kept as missing rather than
+  treated as zero.
+- K=5 gives the best result among the tested cluster counts, but the silhouette score is only
+  0.283. The groups are used as exploratory product descriptions, not fixed market categories.
+- The held-out LDA comparison favors two broad topics over the six-topic result reported in the
+  earlier study.
+- SnowNLP labels 72.8% of the 500-review sample as positive. Against the 180 manually reviewed
+  labels, accuracy is 0.739 and Macro F1 is 0.459, showing weaker performance on less common
+  sentiment classes.
+- Packaging and logistics language is easier for the aspect rules to identify than blind-box
+  outcomes and price/value judgments.
+
+The interactive dashboard is in [`dashboard/`](dashboard/README.md). A written analysis is
+available in [`reports/analysis_report.md`](reports/analysis_report.md).
 
 ![Price distribution](reports/figures/01-price-and-tier-distribution.png)
 
 ![Product segment profiles](reports/figures/04-segment-profile-heatmap.png)
 
-An interactive recruiter-facing dashboard is available under [`dashboard/`](dashboard/README.md)
-with separate Product Landscape and Customer Voice Lab pages.
-
-## Data
-
-| Dataset | Portfolio scope | Provenance |
-|---|---:|---|
-| Product listings | 150 | Public Hooos Taobao/Tmall index snapshots, pages 1–5, collected 2026-08-29 |
-| Review analysis sample | 500 | Fixed length-stratified sample from 8,107 unique Figshare review texts |
-| Aspect evaluation | 180 | Majority vote of three published human coders, mapped to this project taxonomy |
-| Sentiment evaluation | 180 | User-reviewed Positive/Neutral/Negative/Mixed labels; local/private audit file |
-
-Recruiter-reviewable, privacy-conscious tables are available in [`data/public/`](data/public/):
-150 anonymized product records, 500 review-model outputs without review text, 180 evaluation labels
-without review text, and the aggregate tables behind the dashboard. See
-[`data/README.md`](data/README.md) for field exclusions and rebuild instructions.
-
-The review source is the CC BY 4.0 Figshare dataset accompanying Huang (2026), *“Opening the Box
-to Explore the Contents”*. The published review workbook does not retain product IDs or review
-dates, so product-review joins are not fabricated. Only 78/150 product listings display sales;
-missing sales remain missing rather than being converted to zero.
-
-## Reproducible workflow
+## Workflow
 
 ```text
-Saved raw snapshots
+Saved source files
         ↓
-Source-specific parsing and cleaning
+Parsing and cleaning
         ↓
-Data validation and deterministic IDs
+Validation and deterministic IDs
         ↓
-Analysis-ready CSV tables + DuckDB views
+Analysis-ready CSV tables and DuckDB views
         ↓
-Statistical analysis, K-Means, LDA, text clusters, SnowNLP
+Statistical analysis and text models
         ↓
-Model diagnostics, error cases, and visualization-ready outputs
+Evaluation tables, figures, and dashboard data
 ```
 
-Core methods:
-
-- Python modules for parsing, cleaning, validation, modeling, and evaluation;
-- SQL analytical views in DuckDB;
-- HC3-robust exploratory regression and non-parametric tests;
-- mixed numeric/categorical K-Means features, K=2–6 comparison, bootstrap ARI stability;
-- Chinese Jieba tokenization and LDA evaluated with held-out perplexity, UMass coherence,
-  diversity, and separation;
-- character n-gram TF-IDF + SVD clustering as a lightweight text-representation comparison;
-- SnowNLP and rule-based aspect extraction with confusion matrices and error analysis.
+The analysis uses Python for cleaning and modeling, SQL and DuckDB for analytical views, and tests
+for data quality and reproducibility. Random seeds and model ranges are stored in
+[`config/analysis.yml`](config/analysis.yml).
 
 ## Run locally
 
@@ -116,53 +106,35 @@ Python 3.11–3.13 and [uv](https://docs.astral.sh/uv/) are recommended.
 ```bash
 make setup
 make pipeline
+make public-data
 make figures
 make test
 make lint
 ```
 
-To create the non-destructive human sentiment review worksheet once:
+The raw source files are not included in the repository. Their expected locations and provenance
+are documented under `data/raw/external/`.
 
-```bash
-make annotate
-```
-
-The annotation command refuses to overwrite an existing worksheet.
-
-## Project structure
+## Repository structure
 
 ```text
-config/                 Versioned analysis settings and Chinese stopwords
-data/raw/               Local immutable legacy and external-source snapshots
-data/public/            GitHub-safe anonymized rows and aggregate outputs
-data/processed/         Generated analysis-ready tables
-data/annotations/       Human-review worksheet (never overwritten)
-docs/                   Methodology, limitations, dictionary, and audit trail
-reports/figures/        Reproducible English static figures
-sql/                    DuckDB analytical views
-src/                    Modular Python pipeline and visualization code
-tests/                  Data quality, integrity, and reproducibility tests
-outputs/                Generated model diagnostics and reporting tables
+config/          Analysis settings and Chinese stopwords
+data/public/     Anonymized row-level tables and aggregate results
+data/raw/        Local source files and public provenance records
+docs/            Methodology, data dictionary, limitations, and audit notes
+reports/         Written results and generated figures
+sql/             DuckDB analytical queries
+src/             Cleaning, validation, modeling, evaluation, and export code
+tests/           Data-quality and reproducibility tests
+dashboard/       Interactive web dashboard
 ```
-
-## What changed from the undergraduate project?
-
-- Corrected the retained sample discrepancy (47 products/100 reviews versus 50/120 reported).
-- Rejected the unsupported interpretation of K-Means clusters as authentic/counterfeit products.
-- Fixed the legacy LDA document-definition and model-selection problems.
-- Evaluated SnowNLP instead of treating its scores as true labels.
-- Replaced manual result transcription with code-generated tables, tests, and documented limits.
-
-See [the analysis report](reports/analysis_report.md), [methodology](docs/methodology.md),
-[data dictionary](docs/data_dictionary.md), and [limitations](docs/limitations.md).
 
 ## Limitations
 
-This is an exploratory, source-specific observational study—not a market census or causal study.
-Displayed prices may be promotional/SKU-starting prices, sales coverage is incomplete, seller-name
-signals do not verify authorization, and reviews cannot be linked to individual products. The
-human sentiment audit is class-imbalanced and should not be treated as a population satisfaction
-estimate.
+This is a source-specific observational study, not a market census. Displayed prices may be
+promotional or starting-SKU prices. Sales coverage is incomplete. Seller-name signals do not prove
+authorization. The reviews cannot be linked to individual products, and the human sentiment set is
+class-imbalanced. The results do not support causal claims, revenue estimates, or demand forecasts.
 
-Code is licensed under MIT. Third-party datasets and snapshots retain their original terms; see
-`THIRD_PARTY_DATA.md` before redistribution.
+Code is licensed under MIT. Third-party data retains its original terms; see
+[`THIRD_PARTY_DATA.md`](THIRD_PARTY_DATA.md).

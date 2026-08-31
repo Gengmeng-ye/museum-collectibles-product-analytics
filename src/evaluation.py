@@ -58,7 +58,7 @@ def build_human_aspect_evaluation(
 
     merged["manual_aspects"] = merged.apply(consensus, axis=1)
     merged["annotation_source"] = "Majority vote of three human coders (published dataset)"
-    merged["adjudication_status"] = "Human coder majority; mapping to portfolio aspect taxonomy"
+    merged["adjudication_status"] = "Human coder majority; mapping to project aspect taxonomy"
     positive = merged.loc[merged["manual_aspects"].ne("")]
     negative = merged.loc[merged["manual_aspects"].eq("")]
     take_positive = min(int(size * 0.8), len(positive))

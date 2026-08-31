@@ -49,7 +49,7 @@ baseline. It is explicitly not presented as a pretrained semantic language model
 
 SnowNLP provides a reproducible sentiment baseline. A 180-review evaluation table is created.
 Aspect labels use majority agreement from three published human coders and are mapped into the
-portfolio taxonomy. Sentiment labels were independently reviewed by the project owner using
+project taxonomy. Sentiment labels were independently reviewed by the project owner using
 Positive, Neutral, Negative, and Mixed. Neutral and Mixed are pooled only for the three-class
 SnowNLP evaluation; the original four-class labels are retained. Silver labels remain in the
 evaluation table for audit comparison and are never treated as ground truth.
@@ -62,6 +62,6 @@ quality, value, packaging, logistics, promotion, or service remain eligible sent
 ## Privacy and leakage controls
 
 - No cookie, API key, account identifier, student identifier, or author metadata is imported.
-- Masked usernames from the public source are excluded from processed portfolio tables.
+- Masked usernames from the public source are excluded from processed public tables.
 - Model selection uses training data, while LDA perplexity uses a held-out split.
 - No product outcome is predicted from review features because the datasets cannot be joined.

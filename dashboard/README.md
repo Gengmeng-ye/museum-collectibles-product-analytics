@@ -1,6 +1,6 @@
 # Museum Blind Box Consumer Insights Dashboard
 
-Interactive recruiter-facing dashboard for the portfolio project. It uses the same code-generated
+Interactive dashboard for the project. It uses the same code-generated
 results as the Python/SQL analysis and presents four views:
 
 - Overview

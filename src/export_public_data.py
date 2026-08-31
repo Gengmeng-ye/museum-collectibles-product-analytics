@@ -1,4 +1,4 @@
-"""Export privacy-conscious portfolio datasets from generated pipeline outputs."""
+"""Export privacy-conscious public datasets from generated pipeline outputs."""
 
 from __future__ import annotations
 
