@@ -55,7 +55,7 @@ The full discussion is in [`RESULTS.md`](RESULTS.md).
 
 ## Dashboard
 
-**[Open the interactive dashboard](https://museum-blind-box-insights.gengmengy.chatgpt.site)**
+**[Open the interactive dashboard](https://museum.gengmengye.com)**
 
 The dashboard presents the work in two parts:
 
