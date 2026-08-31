@@ -55,6 +55,8 @@ The full discussion is in [`RESULTS.md`](RESULTS.md).
 
 ## Dashboard
 
+**[Open the interactive dashboard](https://museum-blind-box-insights.gengmengy.chatgpt.site)**
+
 The dashboard presents the work in two parts:
 
 - **Product Landscape** explores the 150 marketplace listings.
